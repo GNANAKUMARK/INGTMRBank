@@ -26,6 +26,7 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
+	
 	@Autowired
 	FundTransferService fundService;
 
