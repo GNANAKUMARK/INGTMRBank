@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,7 +44,6 @@ public class BeneficiaryController {
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 
 	}
-	
 
 	@GetMapping("/beneficiaries/{userId}")
 	public ResponseEntity<List<BeneficiaryDetails>> listBeneficiaries(
@@ -55,6 +55,7 @@ public class BeneficiaryController {
 		return new ResponseEntity<>(beneficiaryDetailsList, HttpStatus.OK);
 	}
 
+	
 	@PostMapping("/validate")
 	public ResponseEntity<SaveBeneficiaryRespone> validateOtp(@RequestBody SaveOtpRequest request)
 			throws DataNotFoundException {
@@ -69,4 +70,20 @@ public class BeneficiaryController {
 		response.setStatus("OTP Verified");
 		return new ResponseEntity<SaveBeneficiaryRespone>(response, HttpStatus.OK);
 	}
+
+	@DeleteMapping(value = "/beneficiaries/{id}")
+	public ResponseEntity<SaveBeneficiaryRespone> deleteBeneficiary(
+			@PathVariable(name = "id", required = false) Long id) {
+		SaveBeneficiaryRespone response = new SaveBeneficiaryRespone();
+		try {
+			beneficiaryService.deleteBeneficiary(id);
+		} catch (Exception e) {
+			LOGGER.error(e);
+			throw new DataNotFoundException("Payee is not exist"); 
+		}
+		response.setId(id);
+		response.setStatus("Payee has been deleted successfully"); 
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
 }

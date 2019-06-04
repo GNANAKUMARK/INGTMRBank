@@ -7,6 +7,15 @@ public class SaveOtpRequest implements Serializable {
 	private Long otp;
 	private String operType;
 
+	
+
+	public SaveOtpRequest(long id, Long otp, String operType) {
+		super();
+		this.id = id;
+		this.otp = otp;
+		this.operType = operType;
+	}
+
 	public long getId() {
 		return id;
 	}

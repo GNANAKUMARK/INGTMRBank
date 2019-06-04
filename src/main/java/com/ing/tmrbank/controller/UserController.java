@@ -23,13 +23,13 @@ import com.ing.tmrbank.service.UserService;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class UserController {
-	
 	@Autowired
 	UserService service;
 	
+	
 	@Autowired
 	FundTransferService fundService;
-	
+
 	@PostMapping(value = "/addaccount")
 	public SaveAccountResponse saveAccount(@RequestBody SaveAccountRequest request) {
 		SaveAccountResponse response = new SaveAccountResponse();

@@ -12,7 +12,7 @@ import com.ing.tmrbank.pojo.BeneficiaryDetails;
 
 @Repository
 public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> {
-	@Query("SELECT new com.ing.tmrbank.pojo.BeneficiaryDetails(t.name, t.accNO, t.mobile, t.bankName, t.ifscCode, t.status)"
+	@Query("SELECT new com.ing.tmrbank.pojo.BeneficiaryDetails(t.id, t.name, t.accNO, t.mobile, t.bankName, t.ifscCode, t.status)"
 			+ " FROM Beneficiary t WHERE t.userId = :userId")
 	List<BeneficiaryDetails> getAllBeneficiaries(@Param("userId") Long userId);
 }
