@@ -13,6 +13,7 @@ public
 class BeneficiaryDetails implements Serializable {
 	/** * */
 	private static final long serialVersionUID = 1L;
+	private Long id;
 	private String name;
 	private Long accountNo;
 	private Long mobile;
@@ -20,9 +21,10 @@ class BeneficiaryDetails implements Serializable {
 	private String ifscCode;
 	private String status;
 
-	public BeneficiaryDetails(String name, Long accountNo, Long mobile, String bankName, String ifscCode,
+	public BeneficiaryDetails(Long id, String name, Long accountNo, Long mobile, String bankName, String ifscCode,
 			String status) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.accountNo = accountNo;
 		this.mobile = mobile;
