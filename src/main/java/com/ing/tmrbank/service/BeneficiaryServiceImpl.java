@@ -1,6 +1,7 @@
 package com.ing.tmrbank.service;
 
 import java.util.List;
+import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ing.tmrbank.dao.BeneficiaryRepository;
+import com.ing.tmrbank.dao.UserDao;
+import com.ing.tmrbank.entity.Account;
 import com.ing.tmrbank.entity.Beneficiary;
 import com.ing.tmrbank.exception.DataNotFoundException;
 import com.ing.tmrbank.pojo.BeneficiaryDetails;
 import com.ing.tmrbank.pojo.SaveBeneficiaryRequest;
 import com.ing.tmrbank.pojo.SaveBeneficiaryRespone;
+import com.ing.tmrbank.utils.MailService;
 import com.ing.tmrbank.utils.UtilConstants;
 
 @Service
@@ -21,7 +25,13 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 	private static final Logger LOGGER = LogManager.getLogger(BeneficiaryServiceImpl.class);
 	
 	@Autowired
+	private UserDao userDao;
+	
+	@Autowired
 	BeneficiaryRepository beneficiaryRepository;
+	
+	@Autowired
+	MailService mailService;
 
 	@Override
 	public SaveBeneficiaryRespone saveBeneficiary(SaveBeneficiaryRequest request) {
@@ -32,7 +42,15 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 		beneficiary.setMobile(request.getMobile());
 		beneficiary.setAccNO(request.getAccountNo());
 		beneficiary.setUserId(request.getUserId());
+		Random random = new Random();
+		long otp = 100000 + random.nextInt(900000);
+		beneficiary.setOtp(otp);
+		
 		beneficiary = beneficiaryRepository.save(beneficiary);
+		
+		Account account = userDao.findById(request.getUserId().intValue()).orElse(null);
+		
+		mailService.sendOTPEmail(account.getEmailId(), otp);
 		SaveBeneficiaryRespone response = new SaveBeneficiaryRespone();
 		response.setStatus(UtilConstants.SUCCESS_STATUS);
 		response.setId(beneficiary.getId());

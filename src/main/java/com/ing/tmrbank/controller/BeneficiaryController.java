@@ -41,7 +41,7 @@ public class BeneficiaryController {
 
 	}
 
-	@GetMapping("/list/{userId}")
+	@GetMapping("/beneficiaries/{userId}")
 	public ResponseEntity<List<BeneficiaryDetails>> listBeneficiaries(
 			@PathVariable(name = "userId", required = false) Long userId) {
 		LOGGER.info("inside BeneficiaryController listBeneficiaries()");

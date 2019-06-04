@@ -18,13 +18,17 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<sonar.coverage.exclusions>**/com/ing/tmrbank/dao/*.java,**/com/ing/tmrbank/entity/*.java,**/com/ing/tmrbank/exception/*.java,**/com/ing/tmrbank/pojo/*.java,
-		**/com/ing/tmrbank/utils/*.java,**/com/ing/tmrbank/*.java</sonar.coverage.exclusions>
+			**/com/ing/tmrbank/utils/*.java,**/com/ing/tmrbank/*.java</sonar.coverage.exclusions>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

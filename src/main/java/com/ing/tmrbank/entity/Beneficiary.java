@@ -54,6 +54,6 @@ public class Beneficiary implements Serializable {
 	@Column(name = "User_Id")
 	private Long userId;
 
-	private String Otp;
+	private Long Otp;
 
 }
