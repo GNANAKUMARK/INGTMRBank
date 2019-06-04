@@ -20,6 +20,8 @@
 		<sonar.coverage.exclusions>**/com/ing/tmrbank/dao/*.java,**/com/ing/tmrbank/entity/*.java,**/com/ing/tmrbank/exception/*.java,**/com/ing/tmrbank/pojo/*.java,
 			**/com/ing/tmrbank/utils/*.java,**/com/ing/tmrbank/*.java</sonar.coverage.exclusions>
 	</properties>
+	
+
 
 	<dependencies>
 		<dependency>
@@ -72,6 +74,13 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>nexus</id>
+			<url>http://13.253.56.179:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
