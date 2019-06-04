@@ -41,7 +41,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 		beneficiary.setBankName(request.getBankName());
 		beneficiary.setIfscCode(request.getIfscCode());
 		beneficiary.setMobile(request.getMobile());
-		beneficiary.setAccNO(request.getAccountNo());
+		beneficiary.setAccNO(request.getAccNO());
 		beneficiary.setUserId(request.getUserId());
 		Random random = new Random();
 		long otp = 100000 + random.nextInt(900000);
