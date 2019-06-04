@@ -5,12 +5,12 @@ import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ing.tmrbank.dao.BeneficiaryRepository;
 import com.ing.tmrbank.dao.UserDao;
-import com.ing.tmrbank.entity.Account;
 import com.ing.tmrbank.entity.Beneficiary;
 import com.ing.tmrbank.exception.DataNotFoundException;
 import com.ing.tmrbank.pojo.BeneficiaryDetails;
@@ -89,4 +89,13 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 	public void deleteBeneficiary(Long id) {
 		beneficiaryRepository.deleteById(id);
 	}
+	
+	@Override
+    public Beneficiary updateDetails(long id, SaveBeneficiaryRequest request) {
+        Beneficiary beneficiary = new Beneficiary();
+        BeanUtils.copyProperties(request,beneficiary);
+        beneficiary.setId(id);
+        return beneficiaryRepository.save(beneficiary);
+    
+    }
 }

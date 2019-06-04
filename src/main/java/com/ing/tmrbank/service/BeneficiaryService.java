@@ -2,6 +2,7 @@ package com.ing.tmrbank.service;
 
 import java.util.List;
 
+import com.ing.tmrbank.entity.Beneficiary;
 import com.ing.tmrbank.pojo.BeneficiaryDetails;
 import com.ing.tmrbank.pojo.SaveBeneficiaryRequest;
 import com.ing.tmrbank.pojo.SaveBeneficiaryRespone;
@@ -16,4 +17,6 @@ public interface BeneficiaryService {
 	boolean validateOtp(SaveOtpRequest request);
 	
 	void deleteBeneficiary(Long id);
+	
+	Beneficiary updateDetails(long id, SaveBeneficiaryRequest request);
 }
