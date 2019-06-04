@@ -43,6 +43,7 @@ public class BeneficiaryController {
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 
 	}
+	
 
 	@GetMapping("/beneficiaries/{userId}")
 	public ResponseEntity<List<BeneficiaryDetails>> listBeneficiaries(
