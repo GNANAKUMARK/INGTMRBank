@@ -72,7 +72,7 @@ public class BeneficiaryController {
 	}
 
 	@DeleteMapping(value = "/beneficiaries/{id}")
-	public ResponseEntity<SaveBeneficiaryRespone> saveBeneficiary(
+	public ResponseEntity<SaveBeneficiaryRespone> deleteBeneficiary(
 			@PathVariable(name = "id", required = false) Long id) {
 		SaveBeneficiaryRespone response = new SaveBeneficiaryRespone();
 		try {

@@ -50,8 +50,11 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 		beneficiary = beneficiaryRepository.save(beneficiary);
 
 		Account account = userDao.findById(request.getUserId().intValue()).orElse(null);
-
-		mailService.sendOTPEmail(account.getEmailId(), otp);
+		try {
+			mailService.sendOTPEmail(account.getEmailId(), otp);
+		} catch(Exception e) {
+			
+		}
 		SaveBeneficiaryRespone response = new SaveBeneficiaryRespone();
 		response.setStatus(UtilConstants.SUCCESS_STATUS);
 		response.setId(beneficiary.getId());
