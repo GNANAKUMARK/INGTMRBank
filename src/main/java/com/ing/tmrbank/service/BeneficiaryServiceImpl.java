@@ -16,6 +16,7 @@ import com.ing.tmrbank.exception.DataNotFoundException;
 import com.ing.tmrbank.pojo.BeneficiaryDetails;
 import com.ing.tmrbank.pojo.SaveBeneficiaryRequest;
 import com.ing.tmrbank.pojo.SaveBeneficiaryRespone;
+import com.ing.tmrbank.pojo.SaveOtpRequest;
 import com.ing.tmrbank.utils.MailService;
 import com.ing.tmrbank.utils.UtilConstants;
 
@@ -23,13 +24,13 @@ import com.ing.tmrbank.utils.UtilConstants;
 public class BeneficiaryServiceImpl implements BeneficiaryService {
 
 	private static final Logger LOGGER = LogManager.getLogger(BeneficiaryServiceImpl.class);
-	
+
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	BeneficiaryRepository beneficiaryRepository;
-	
+
 	@Autowired
 	MailService mailService;
 
@@ -45,11 +46,11 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 		Random random = new Random();
 		long otp = 100000 + random.nextInt(900000);
 		beneficiary.setOtp(otp);
-		
+
 		beneficiary = beneficiaryRepository.save(beneficiary);
-		
+
 		Account account = userDao.findById(request.getUserId().intValue()).orElse(null);
-		
+
 		mailService.sendOTPEmail(account.getEmailId(), otp);
 		SaveBeneficiaryRespone response = new SaveBeneficiaryRespone();
 		response.setStatus(UtilConstants.SUCCESS_STATUS);
@@ -66,5 +67,17 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 			throw new DataNotFoundException("No data found in the system for the requested user");
 		}
 		return beneficiaryDetailsListList;
+	}
+
+	@Override
+	public boolean validateOtp(SaveOtpRequest request) {
+		Beneficiary beneficiary = beneficiaryRepository.findById(request.getId()).orElse(null);
+		if (beneficiary == null) {
+			throw new DataNotFoundException("Invalid Payee details");
+		}
+		if (beneficiary.getOtp() != null && beneficiary.getOtp().equals(request.getOtp())) {
+			return true;
+		}
+		return false;
 	}
 }

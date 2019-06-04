@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ing.tmrbank.entity.Beneficiary;
+import com.ing.tmrbank.exception.DataNotFoundException;
 import com.ing.tmrbank.pojo.BeneficiaryDetails;
 import com.ing.tmrbank.pojo.SaveBeneficiaryRequest;
 import com.ing.tmrbank.pojo.SaveBeneficiaryRespone;
+import com.ing.tmrbank.pojo.SaveOtpRequest;
 import com.ing.tmrbank.service.BeneficiaryService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -51,4 +54,18 @@ public class BeneficiaryController {
 		return new ResponseEntity<>(beneficiaryDetailsList, HttpStatus.OK);
 	}
 
+	@PostMapping("/validate")
+	public ResponseEntity<SaveBeneficiaryRespone> validateOtp(@RequestBody SaveOtpRequest request)
+			throws DataNotFoundException {
+		LOGGER.info("Enter SampleController::test");
+		LOGGER.debug("in side test method");
+		Beneficiary beneficiary = new Beneficiary();
+		SaveBeneficiaryRespone response = new SaveBeneficiaryRespone();
+		boolean benef = beneficiaryService.validateOtp(request);
+		if (!benef) {
+			throw new DataNotFoundException("Enter valid OTP !!!");
+		}
+		response.setStatus("OTP Verified");
+		return new ResponseEntity<SaveBeneficiaryRespone>(response, HttpStatus.OK);
+	}
 }
