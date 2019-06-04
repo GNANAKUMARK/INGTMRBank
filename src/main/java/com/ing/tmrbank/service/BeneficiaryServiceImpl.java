@@ -80,4 +80,8 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 		}
 		return false;
 	}
+
+	public void deleteBeneficiary(Long id) {
+		beneficiaryRepository.deleteById(id);
+	}
 }

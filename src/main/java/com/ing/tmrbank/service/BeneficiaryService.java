@@ -14,4 +14,6 @@ public interface BeneficiaryService {
 	List<BeneficiaryDetails> getAllBeneficiaries(Long userId);
 	
 	boolean validateOtp(SaveOtpRequest request);
+	
+	void deleteBeneficiary(Long id);
 }
