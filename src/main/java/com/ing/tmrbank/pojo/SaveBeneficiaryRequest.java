@@ -19,7 +19,7 @@ public class SaveBeneficiaryRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String name;
-	//@JsonProperty(value = "accNO")
+	@JsonProperty(value = "accountNo")
 	private Long accNO;
 	private Long mobile;
 	private String bankName;
