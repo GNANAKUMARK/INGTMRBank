@@ -55,6 +55,7 @@ public class BeneficiaryController {
 		return new ResponseEntity<>(beneficiaryDetailsList, HttpStatus.OK);
 	}
 
+	
 	@PostMapping("/validate")
 	public ResponseEntity<SaveBeneficiaryRespone> validateOtp(@RequestBody SaveOtpRequest request)
 			throws DataNotFoundException {
