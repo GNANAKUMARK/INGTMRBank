@@ -4,7 +4,7 @@ import com.ing.tmrbank.pojo.SaveBeneficiaryRequest;
 import com.ing.tmrbank.pojo.SaveBeneficiaryRespone;
 
 public interface BeneficiaryService {
-	
-	SaveBeneficiaryRespone saveBeneficiary (SaveBeneficiaryRequest request);
+
+	SaveBeneficiaryRespone saveBeneficiary(SaveBeneficiaryRequest request);
 
 }

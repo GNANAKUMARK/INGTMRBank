@@ -27,34 +27,33 @@ public class Beneficiary implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@Column(name="Id")
+	@Column(name = "Id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "Name")
 	private String name;
-	
+
 	@Column(name = "Acc_No")
 	private Long accNO;
-	
+
 	@Column(name = "Mobile")
 	private Long mobile;
-	
+
 	@Column(name = "Bank_Name")
 	private String bankName;
-	
+
 	@Column(name = "IFSC_Code")
 	private String ifscCode;
-	
+
 	@Column(name = "Status")
 	private String status;
-	
-	@Column(name = "User_Id")
-	private String userId;
-	
-	private String Otp;
 
+	@Column(name = "User_Id")
+	private Long userId;
+
+	private String Otp;
 
 }
