@@ -33,6 +33,8 @@ public class BeneficiaryController {
 	private static final Logger LOGGER = LogManager.getLogger(BeneficiaryController.class);
 	@Autowired
 	BeneficiaryService beneficiaryService;
+	
+	private String ABC="";
 
 	@PostMapping(value = "/beneficiaries")
 	public ResponseEntity<SaveBeneficiaryRespone> saveBeneficiary(@RequestBody SaveBeneficiaryRequest request) {
