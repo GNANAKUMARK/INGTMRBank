@@ -43,6 +43,7 @@ public class BeneficiaryController {
 		try {
 			
 			response = beneficiaryService.saveBeneficiary(request);
+			response = beneficiaryService.saveBeneficiary(request);
 		} catch (Exception e) {
 			LOGGER.error(e);
 			throw e;
