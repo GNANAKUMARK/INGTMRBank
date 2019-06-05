@@ -36,6 +36,7 @@ public class BeneficiaryController {
 	
 	private String ABC="";
 
+	private String test = null;
 	@PostMapping(value = "/beneficiaries")
 	public ResponseEntity<SaveBeneficiaryRespone> saveBeneficiary(@RequestBody SaveBeneficiaryRequest request) {
 		SaveBeneficiaryRespone response = null;
