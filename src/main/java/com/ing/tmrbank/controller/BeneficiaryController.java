@@ -41,6 +41,7 @@ public class BeneficiaryController {
 	public ResponseEntity<SaveBeneficiaryRespone> saveBeneficiary(@RequestBody SaveBeneficiaryRequest request) {
 		SaveBeneficiaryRespone response = null;
 		try {
+			
 			response = beneficiaryService.saveBeneficiary(request);
 		} catch (Exception e) {
 			LOGGER.error(e);
