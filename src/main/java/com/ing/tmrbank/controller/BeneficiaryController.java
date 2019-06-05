@@ -33,20 +33,12 @@ public class BeneficiaryController {
 	private static final Logger LOGGER = LogManager.getLogger(BeneficiaryController.class);
 	@Autowired
 	BeneficiaryService beneficiaryService;
-	
-	private String ABC="";
 
-	private String test = null;
+
 	@PostMapping(value = "/beneficiaries")
 	public ResponseEntity<SaveBeneficiaryRespone> saveBeneficiary(@RequestBody SaveBeneficiaryRequest request) {
-		SaveBeneficiaryRespone response = null;
-		try {
-			
-			response = beneficiaryService.saveBeneficiary(request);
-		} catch (Exception e) {
-			LOGGER.error(e);
-			throw e;
-		}
+		LOGGER.info("Enter BeneficiaryController::saveBeneficiary");
+		SaveBeneficiaryRespone response = beneficiaryService.saveBeneficiary(request);
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 
 	}
@@ -61,7 +53,6 @@ public class BeneficiaryController {
 		return new ResponseEntity<>(beneficiaryDetailsList, HttpStatus.OK);
 	}
 
-	
 	@PostMapping("/validate")
 	public ResponseEntity<SaveBeneficiaryRespone> validateOtp(@RequestBody SaveOtpRequest request)
 			throws DataNotFoundException {
@@ -85,25 +76,25 @@ public class BeneficiaryController {
 			beneficiaryService.deleteBeneficiary(id);
 		} catch (Exception e) {
 			LOGGER.error(e);
-			throw new DataNotFoundException("Payee is not exist"); 
+			throw new DataNotFoundException("Payee is not exist");
 		}
 		response.setId(id);
-		response.setStatus("Payee has been deleted successfully"); 
+		response.setStatus("Payee has been deleted successfully");
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
-	@PutMapping(value="/update/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SaveBeneficiaryRespone> updateBeneficiaryDetail(@PathVariable("id") long id,@RequestBody SaveBeneficiaryRequest request)
-            throws DataNotFoundException{
-        LOGGER.info("Enter SampleController::test");
-        LOGGER.debug("in side test method");
-        SaveBeneficiaryRespone response = new SaveBeneficiaryRespone();
-        Beneficiary beneficiary = beneficiaryService.updateDetails(id,request);
-        if(beneficiary==null || beneficiary.getId()==null) {
-            throw new DataNotFoundException("data not found");
-        }
-        response.setStatus("Updated Successfully");
-        return new ResponseEntity<SaveBeneficiaryRespone>(response,HttpStatus.OK);
-        
-    }
+
+	@PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SaveBeneficiaryRespone> updateBeneficiaryDetail(@PathVariable("id") long id,
+			@RequestBody SaveBeneficiaryRequest request) throws DataNotFoundException {
+		LOGGER.info("Enter SampleController::test");
+		LOGGER.debug("in side test method");
+		SaveBeneficiaryRespone response = new SaveBeneficiaryRespone();
+		Beneficiary beneficiary = beneficiaryService.updateDetails(id, request);
+		if (beneficiary == null || beneficiary.getId() == null) {
+			throw new DataNotFoundException("data not found");
+		}
+		response.setStatus("Updated Successfully");
+		return new ResponseEntity<SaveBeneficiaryRespone>(response, HttpStatus.OK);
+
+	}
 }
