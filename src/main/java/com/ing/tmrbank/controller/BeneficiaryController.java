@@ -34,6 +34,7 @@ public class BeneficiaryController {
 	@Autowired
 	BeneficiaryService beneficiaryService;
 
+	private String test = null;
 	@PostMapping(value = "/beneficiaries")
 	public ResponseEntity<SaveBeneficiaryRespone> saveBeneficiary(@RequestBody SaveBeneficiaryRequest request) {
 		SaveBeneficiaryRespone response = null;
